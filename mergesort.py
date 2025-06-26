@@ -37,8 +37,7 @@ def merge_sort(arr):
 
         print(f"merged: {arr}")
 
-# Main program
-if __name__ == "__main__":
+ if __name__ == "__main__":
     user_input = input("Enter numbers, separated by ',': ")
     input_list = user_input.split(',')
     print(f"input_list: {input_list}")
