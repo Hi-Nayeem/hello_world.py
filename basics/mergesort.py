@@ -1,52 +1,39 @@
-def merge_sort(arr):
-    if len(arr) > 1:
-        m = len(arr) // 2
-        left = arr[:m]
-        right = arr[m:]
-
-        # Only print this ONCE per function call
-        print(f"array: {arr}")
-        print(f"m: {m}")
-
-        merge_sort(left)
-        merge_sort(right)
-
-        i = j = k = 0
-
-        print("Merging...")
-        print(f"left: {left}")
-        print(f"right: {right}")
-
-        while i < len(left) and j < len(right):
-            if left[i] < right[j]:
-                arr[k] = left[i]
-                i += 1
-            else:
-                arr[k] = right[j]
-                j += 1
-            k += 1
-
-        while i < len(left):
-            arr[k] = left[i]
+def merge(left, right):
+    merged = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
             i += 1
-            k += 1
-
-        while j < len(right):
-            arr[k] = right[j]
+        else:
+            merged.append(right[j])
             j += 1
-            k += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged
 
-        print(f"merged: {arr}")
+def mergesort(array):
+    if len(array) <= 1:
+        return array
 
+    print("array:", array)
+    m = len(array) // 2
+    print("m:", m)
+
+    left = mergesort(array[:m])
+    right = mergesort(array[m:])
+
+    merged = merge(left, right)
+    print("Merging...")
+    print("left:", left)
+    print("right:", right)
+    print("merged:", merged)
+    return merged
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers, separated by ',': ")
-    input_list = user_input.split(',')
-
-    print(f"input_list: {input_list}")
-
-    value_list = list(map(int, input_list))
-    print(f"value_list: {value_list}")
-
-    merge_sort(value_list)
-    print(value_list)
+    numbers = input("Enter numbers, separated by ',': ").split(',')
+    value_list = [int(n.strip()) for n in numbers if n.strip()]
+    print("input_list:", numbers)
+    print("value_list:", value_list)
+    sorted_list = mergesort(value_list)
+    print(sorted_list)
