@@ -16,18 +16,23 @@ def mergesort(array):
     if len(array) <= 1:
         return array
 
+    # Print current array before splitting
     print("array:", array)
     m = len(array) // 2
     print("m:", m)
 
+    # Recurse on left half first
     left = mergesort(array[:m])
+    # Then recurse on right half
     right = mergesort(array[m:])
 
+    # Merge and print debug info after merge
     merged = merge(left, right)
     print("Merging...")
     print("left:", left)
     print("right:", right)
     print("merged:", merged)
+
     return merged
 
 if __name__ == "__main__":
@@ -35,5 +40,6 @@ if __name__ == "__main__":
     value_list = [int(n.strip()) for n in numbers if n.strip()]
     print("input_list:", numbers)
     print("value_list:", value_list)
+
     sorted_list = mergesort(value_list)
     print(sorted_list)
