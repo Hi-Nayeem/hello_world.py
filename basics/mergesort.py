@@ -4,6 +4,7 @@ def merge_sort(arr):
         left = arr[:m]
         right = arr[m:]
 
+        # Only print this ONCE per function call
         print(f"array: {arr}")
         print(f"m: {m}")
 
@@ -49,5 +50,3 @@ if __name__ == "__main__":
 
     merge_sort(value_list)
     print(value_list)
-
-
